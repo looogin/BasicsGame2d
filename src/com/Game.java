@@ -110,7 +110,7 @@ public class Game extends Canvas implements Runnable {
         Game game = new Game();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         game.setPreferredSize(new Dimension(Constants.WIDTH * SCALE, Constants.HEIGHT * SCALE));
-        JFrame frame = new JFrame("-");
+        JFrame frame = new JFrame("Test");
         frame.setResizable(false);
         frame.setSize(WIDTH * SCALE, HEIGHT * SCALE);
         frame.setLayout(new BorderLayout());

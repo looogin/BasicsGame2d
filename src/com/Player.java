@@ -10,9 +10,10 @@ public class Player {
     private InputHandler input;
     private int x1, y1;
     private Animation IdeAnimation, RunAnimation;
-    int xa = 0;
-    int ya = 0;
+    private int xa = 0;
+    private int ya = 0;
     private SpriteSheet ide, run;
+
 
     public Player(int x, int y, InputHandler input) {
         this.x1 = x;

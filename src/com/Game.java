@@ -65,7 +65,6 @@ public class Game extends Canvas implements Runnable {
 
 
             if (frameEnd - frameStart >= 1000) {
-                //System.out.println(frames);    //Take this out for final version
                 frames = 0;
                 frameStart = System.currentTimeMillis();
             } else {
@@ -85,8 +84,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void tick() {
-        player1.tick();
         input.tick();
+        player1.tick();
+
     }
 
     public void render() {

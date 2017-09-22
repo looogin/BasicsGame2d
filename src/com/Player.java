@@ -13,7 +13,7 @@ public class Player {
     private int xa = 0;
     private int ya = 0;
     private SpriteSheet ide, run;
-    private int  move =0;
+    private int move = 0;
 
 
     public Player(int x, int y, InputHandler input) {
@@ -29,14 +29,14 @@ public class Player {
     public void tick() {
         IdeAnimation.tick();
         RunAnimation.tick();
-        move=0;
+        move = 0;
         //if (input.up.down) ya--;
         //if (input.down.down) ya++;
-        if (input.left.down&!input.right.down) {
+        if (input.left.down & !input.right.down) {
             xa--;
             move = 1;
         }
-        if (input.right.down&!input.left.down) {
+        if (input.right.down & !input.left.down) {
             xa++;
             move = 2;
         }
@@ -46,13 +46,16 @@ public class Player {
     public void render(Graphics g) {
         int x = x1 + xa;
         int y = y1;
-        switch (move){
-            case 0: IdeAnimation.render(g, x, y, SPRITE_WIDTH * SCALE, SPRITE_HEIGHT * SCALE);
-            break;
-            case 2:RunAnimation.render(g, x, y, SPRITE_WIDTH * SCALE, SPRITE_HEIGHT * SCALE);
-            break;
-            case 1:RunAnimation.render(g, x + SPRITE_WIDTH * SCALE, y, -SPRITE_WIDTH * SCALE, SPRITE_HEIGHT * SCALE);
-            break;
+        switch (move) {
+            case 0:
+                IdeAnimation.render(g, x, y, SPRITE_WIDTH * SCALE, SPRITE_HEIGHT * SCALE);
+                break;
+            case 2:
+                RunAnimation.render(g, x, y, SPRITE_WIDTH * SCALE, SPRITE_HEIGHT * SCALE);
+                break;
+            case 1:
+                RunAnimation.render(g, x + SPRITE_WIDTH * SCALE, y, -SPRITE_WIDTH * SCALE, SPRITE_HEIGHT * SCALE);
+                break;
         }
 
     }

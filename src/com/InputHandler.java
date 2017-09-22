@@ -15,16 +15,11 @@ public class InputHandler implements KeyListener {
     public Key menu = new Key();
 
     public void releaseAll() {
-        for (Key key: keys) {
-            key.down = false;
-        }
+        keys.forEach(key->key.down=false);
     }
 
     public void tick() {
-        for (Key key: keys) {
-            key.tick();
-        }
-
+        keys.forEach(key->key.tick());
    }
 
     public InputHandler(Game game) {

@@ -6,83 +6,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler implements KeyListener {
-    private String[] nameKey = {"Up", "Down", "Left", "Right", "Attack", "Menu"};
-    private String currentKey = "Ide";
-
-    String getCurrentKey() {
-        return currentKey;
-    }
-
-    private void setCurrentKey(String currentKey) {
-        this.currentKey = currentKey;
-    }
-
-    public class Key {
-        int presses;
-        boolean down;
-        private String name;
-
-
-        Key(String name) {
-            keys.add(this);
-            this.name = name;
-
-        }
-
-        void toggle(boolean pressed) {
-            if (pressed != down) {
-                down = pressed;
-            }
-            if (pressed) {
-                presses++;
-            }
-        }
-
-        void tick() {
-            if(down)setCurrentKey(name);
-        }
-    }
-
-    private List<Key> keys = new ArrayList<>();
-    private Key up = new Key(nameKey[0]);
-    private Key down = new Key(nameKey[1]);
-    private Key left = new Key(nameKey[2]);
-    private Key right = new Key(nameKey[3]);
-    private Key attack = new Key(nameKey[4]);
-    private Key menu = new Key(nameKey[5]);
+    public List<Key> keys = new ArrayList<>();
+    public Key up = new Key();
+    public Key down = new Key();
+    public Key left = new Key();
+    public Key right = new Key();
+    public Key attack = new Key();
+    public Key menu = new Key();
 
     public void releaseAll() {
-        for (Key key : keys) {
+        for (Key key: keys) {
             key.down = false;
         }
     }
 
-    void tick() {
-        for (Key key : keys) {
+    public void tick() {
+        for (Key key: keys) {
             key.tick();
         }
-        System.out.println(getCurrentKey());
-    }
 
+   }
 
-    InputHandler(Game game) {
+    public InputHandler(Game game) {
         game.addKeyListener(this);
     }
-    boolean blockInpunt;
-    public void keyPressed(KeyEvent ke) {
-        for (Key key : keys) {
-            if (key.down){
-                blockInpunt = true;
-                break;
-            }
-            else blockInpunt = false;
-        }
 
-        if (!blockInpunt)toggle(ke, true);
+    public void keyPressed(KeyEvent ke) {
+        toggle(ke, true);
     }
 
     public void keyReleased(KeyEvent ke) {
-        if (ke.isActionKey()||!blockInpunt) setCurrentKey("Ide");
         toggle(ke, false);
     }
 
@@ -114,5 +67,31 @@ public class InputHandler implements KeyListener {
     public void keyTyped(KeyEvent ke) {
     }
 
+    public class Key {
+        public int presses, absorbs;
+        public boolean down, clicked;
+
+        public Key() {
+            keys.add(this);
+        }
+
+        public void toggle(boolean pressed) {
+            if (pressed != down) {
+                down = pressed;
+            }
+            if (pressed) {
+                presses++;
+            }
+        }
+
+        public void tick() {
+            if (absorbs < presses) {
+                absorbs++;
+                clicked = true;
+            } else {
+                clicked = false;
+            }
+        }
+    }
 
 }

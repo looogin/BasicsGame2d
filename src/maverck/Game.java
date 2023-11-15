@@ -1,18 +1,18 @@
-package com;
+package maverck;
 
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.Serial;
 import java.util.concurrent.TimeUnit;
 
-import static com.Constants.SCALE;
-
 public class Game extends Canvas implements Runnable {
+    @Serial
     private static final long serialVersionUID = 1L;
     public static boolean running = false;
     public Thread gameThread;
-    private InputHandler input = new InputHandler(this);
+    private final InputHandler input = new InputHandler(this);
     private Player player1;
 
     public void init() {
@@ -76,7 +76,7 @@ public class Game extends Canvas implements Runnable {
                 rest = TimeUnit.MILLISECONDS.convert(rest, TimeUnit.NANOSECONDS);
                 try {
                     Thread.sleep(rest);
-                } catch (InterruptedException ex) {
+                } catch (InterruptedException _) {
                 }
             }
         }
@@ -109,10 +109,10 @@ public class Game extends Canvas implements Runnable {
 
         Game game = new Game();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        game.setPreferredSize(new Dimension(Constants.WIDTH * SCALE, Constants.HEIGHT * SCALE));
+        game.setPreferredSize(new Dimension(Constants.WIDTH * Constants.SCALE, Constants.HEIGHT * Constants.SCALE));
         JFrame frame = new JFrame("Test");
         frame.setResizable(false);
-        frame.setSize(WIDTH * SCALE, HEIGHT * SCALE);
+        frame.setSize(WIDTH * Constants.SCALE, HEIGHT * Constants.SCALE);
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.add(game);

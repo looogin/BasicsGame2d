@@ -1,12 +1,13 @@
-package com;
+package maverck;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Animation {
 
-    private BufferedImage[] images;
-    private int interval, index;
+    private final BufferedImage[] images;
+    private final int interval;
+    private int index;
     private long timer, now, lastTime;
 
     public Animation(BufferedImage[] images, int interval) {
